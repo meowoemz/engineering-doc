@@ -1,0 +1,19 @@
+Setup Local Vhost
+
+```
+sudo vi /etc/hosts
+```
+
+add server name and bind to 127.0.0.1
+
+```
+sudo vi /usr/local/etc/nginx/nginx.conf
+```
+
+add server block to nginx config
+
+```
+sudo nginx -s stop
+
+sudo nginx
+```

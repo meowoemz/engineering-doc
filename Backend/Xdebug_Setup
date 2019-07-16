@@ -1,0 +1,38 @@
+phpstorm xdebug setup
+
+brew install php{VERSION}-xdebug
+ex. brew install php56-xdebug
+
+edit php.ini
+
+add
+zend_extension=/usr/local/opt/php56-xdebug/xdebug.so
+xdebug.profiler_enable = 1
+xdebug.profiler_output_dir = /Library/WebServer/xdebug-profiler
+xdebug.profiler_output_name = "callgrind.%R.%t"
+xdebug.idekey="macgdbp"
+xdebug.remote_enable=1
+xdebug.remote_host="localhost"
+xdebug.remote_port=9001
+xdebug.remote_handler="dbgp"
+
+xdebug use port 9000 for default for nginx
+change remote port for xdebug and phpstorm debugger port to 9001, php-fpm is using 9000 already
+
+restart php
+brew services restart php56
+
+in phpstorm
+preference->languages & framework->PHP
+add interpreter
+
+preference->languages & framework->PHP->Debug
+configure port(9001) for debug
+check can accept external connections
+
+preference->languages & framework->PHP->servers
+add mapping
+
+run->web server debug validation
+
+or add XDEBUG_SESSION_START=name to GET/POST param to trigger it
